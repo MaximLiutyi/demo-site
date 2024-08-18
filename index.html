@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Pizza Deliveries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Pizza Deliveries</h1>
+    <p>Prices:</p>
+    <ul>
+        <li>Small pizza = $15</li>
+        <li>Medium pizza = $20</li>
+        <li>Large pizza = $25</li>
+    </ul>
+    <p>Add-ons:</p>
+    <ul>
+        <li>Pepperoni for small pizza + $2</li>
+        <li>Pepperoni for M or L pizza + $3</li>
+        <li>Extra cheese for any size pizza + $1</li>
+    </ul>
+
+    <label for="size">What size pizza do you want?</label>
+    <select id="size">
+        <option value="">Select size</option>
+        <option value="S">Small</option>
+        <option value="M">Medium</option>
+        <option value="L">Large</option>
+    </select>
+
+    <label for="pepperoni">Do you want pepperoni on your pizza?</label>
+    <select id="pepperoni">
+        <option value="N">No</option>
+        <option value="Y">Yes</option>
+    </select>
+
+    <label for="extra_cheese">Do you want extra cheese?</label>
+    <select id="extra_cheese">
+        <option value="N">No</option>
+        <option value="Y">Yes</option>
+    </select>
+
+    <button onclick="calculateBill()">Calculate Bill</button>
+
+    <p id="result"></p>
+
+    <script>
+        function calculateBill() {
+            let size = document.getElementById('size').value;
+            let pepperoni = document.getElementById('pepperoni').value;
+            let extra_cheese = document.getElementById('extra_cheese').value;
+
+            let s_pizza = 15;
+            let m_pizza = 20;
+            let l_pizza = 25;
+
+            if (size === "S") {
+                if (pepperoni === "Y") {
+                    s_pizza += 2;
+                }
+                if (extra_cheese === "Y") {
+                    s_pizza += 1;
+                }
+                document.getElementById('result').textContent = `Your final bill for S size: $${s_pizza}`;
+            } else if (size === 'M') {
+                if (pepperoni === "Y") {
+                    m_pizza += 3;
+                }
+                if (extra_cheese === "Y") {
+                    m_pizza += 1;
+                }
+                document.getElementById('result').textContent = `Your final bill for M size: $${m_pizza}`;
+            } else if (size === 'L') {
+                if (pepperoni === "Y") {
+                    l_pizza += 3;
+                }
+                if (extra_cheese === "Y") {
+                    l_pizza += 1;
+                }
+                document.getElementById('result').textContent = `Your final bill for L size: $${l_pizza}`;
+            } else {
+                document.getElementById('result').textContent = "You typed something wrong";
+            }
+        }
+    </script>
+</body>
+</html>
